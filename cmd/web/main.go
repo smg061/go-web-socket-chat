@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"socket-go-stuff/cmd/internal/handlers"
 )
 
 type application struct {
@@ -18,7 +19,10 @@ func main() {
 		errorLog: errorLog,
 		infoLog: infoLog,
 	}
+	app.infoLog.Println("Starting channel listener")
+	go handlers.ListenToWsChannel()
 	app.infoLog.Println("Starting web server on port :8000")
+	
 	routes  := routes()
 	_ = http.ListenAndServe(":8000", routes)
 }

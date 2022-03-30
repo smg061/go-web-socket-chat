@@ -24,5 +24,6 @@ func main() {
 	app.infoLog.Println("Starting web server on port :8000")
 	
 	routes  := routes()
-	_ = http.ListenAndServe(":8000", routes)
+	err := http.ListenAndServe(":8000", routes)
+	log.Fatal(err)
 }

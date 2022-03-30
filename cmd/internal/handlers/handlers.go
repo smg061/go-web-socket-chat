@@ -39,7 +39,13 @@ type WsJsonResponse struct {
 	Action string `json:"action"`
 	Message string `json:"message"`
 	MessageType string `json:"message_type"`
+	UserMessage UserMessage `json:"user_message"`
 	ConnectedUsers []string `json:"connected_users"`
+}
+
+type UserMessage struct {
+	MessageBody string `json:"message"`
+	User string `json:"user"`
 }
 
 type WebSocketConnection struct {
@@ -107,9 +113,15 @@ func ListenToWsChannel() {
 			users:= getUserList()
 			response.ConnectedUsers = users
 			broadcastToAll(response)
+		case "broadcast_client":
+			response.Action = "broadcast_server"
+			response.Message = fmt.Sprintf("user: %s message: %s", e.Username, e.Message)
+			response.UserMessage.MessageBody = e.Message
+			response.UserMessage.User = e.Username
+			broadcastToAll(response)
 		}
-		response.Message = fmt.Sprintf("Some message and action was %s", e.Action)
-		broadcastToAll(response)
+		// response.Message = fmt.Sprintf("Some message and action was %s", e.Action)
+		// broadcastToAll(response)
 	}
 }
 

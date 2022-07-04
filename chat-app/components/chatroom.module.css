@@ -1,0 +1,44 @@
+.chatroomGrid {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px dotted black;
+    padding: 5px;
+}
+
+.chatroomGrid {
+    background-color: hsla(0, 10%, 83%, 0.187);
+}
+
+.chatroomGrid input {
+    width: 150px;
+}
+
+.chatColumn {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+.chatColumn input[type=text] {
+    color: black;
+    border: 1px black solid;
+    border-radius: 5px;
+}
+.chatColumn input[type=text]:focus {
+    border: pink 1px solid;
+}
+.chatMessages {
+    background-color: white;
+    border: 1px black dashed;
+    border-radius: 19px;
+    padding: 2px;
+    height: clamp(50px, 100px, 70%);
+    margin-bottom: 100%;
+}
+
+
+.statusDivOnline {
+    color: rgb(111, 228, 52);
+}
+
+.statusDivOffline {
+    color: rgba(213, 56, 59, 0.639);
+}
